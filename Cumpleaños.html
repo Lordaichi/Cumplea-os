@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Atrás Cumpleaños</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 3rem;
+        }
+        #countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            font-size: 2rem;
+        }
+        .time {
+            margin: 0 15px;
+            text-align: center;
+        }
+        .time span {
+            display: block;
+            font-size: 4rem;
+            color: #007bff;
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡La cuenta atrás hasta el cumpleaños comienza ahora! 🎉</h1>
+    <div id="countdown">
+        <div class="time">
+            <span id="days">00</span>
+            Días
+        </div>
+        <div class="time">
+            <span id="hours">00</span>
+            Horas
+        </div>
+        <div class="time">
+            <span id="minutes">00</span>
+            Minutos
+        </div>
+        <div class="time">
+            <span id="seconds">00</span>
+            Segundos
+        </div>
+    </div>
+
+    <footer>
+        ¡Prepárate para la fiesta el 31 de diciembre de 2024 a la medianoche! 💃🎉
+    </footer>
+
+    <script>
+        // Configura la fecha del evento
+        const targetDate = new Date('2024-12-31T00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            // Calcula días, horas, minutos y segundos
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Actualiza el DOM
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+
+            // Detén el temporizador cuando llegue a cero
+            if (timeLeft < 0) {
+                clearInterval(countdown);
+                document.getElementById('countdown').innerHTML = '<h2>¡Feliz cumpleaños! 🎂🎈</h2>';
+            }
+        }
+
+        // Actualiza cada segundo
+        const countdown = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
